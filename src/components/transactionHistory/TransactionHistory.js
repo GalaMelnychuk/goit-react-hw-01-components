@@ -1,18 +1,19 @@
 import React from "react";
 import TransactionList from "./TransactionList";
+import styles from "./TransactionHistory.module.css";
 
-const TransactionHistory = ({transactions}) => {
+const TransactionHistory = ({ transactions }) => {
   return (
     <>
-      <table className="transaction-history">
-      <thead>
-        <tr>
-          <th>Type</th>
-          <th>Amount</th>
-          <th>Currency</th>
-        </tr>
-      </thead>
-        <TransactionList transactionList = {transactions}/>
+      <table className={styles.transactionHistory}>
+        <thead>
+          <tr className={styles.transactionHead}>
+            <th className={styles.transactionHeadItem}>Type</th>
+            <th className={styles.transactionHeadItem}>Amount</th>
+            <th className={styles.transactionHeadItem}>Currency</th>
+          </tr>
+        </thead>
+        <TransactionList transactionList={transactions} />
       </table>
     </>
   );

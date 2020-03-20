@@ -1,9 +1,6 @@
 import React from "react";
-
-// import PropTypes from "prop-types";
-// import styles from "../profile/Profile.css";
-
-//
+import PropTypes from "prop-types";
+import styles from "./Profile.module.css";
 
 const Profile = ({ user }) => {
   const {
@@ -11,33 +8,48 @@ const Profile = ({ user }) => {
     tag,
     location,
     avatar,
-    stats: { followers, views, likes }
+    stats: { followers = 0, views = 0, likes = 0 }
   } = user;
 
   return (
-    <div className="profile">
-      <div className="description">
-        <img src={avatar} alt="user avatar" className="avatar" />
-        <p className="name">{name}</p>
-        <p className="tag">{tag}</p>
-        <p className="location">{location}</p>
+    <div className={styles.profile}>
+      <div className={styles.description}>
+        <img src={avatar} alt="user avatar" className={styles.avatar} />
+        <p className={styles.name}>{name}</p>
+        <p className={styles.tag}>{tag}</p>
+        <p className={styles.location}>{location}</p>
       </div>
 
-      <ul className="stats">
-        <li>
-          <span className="label">Followers</span>
-          <span className="quantity">{followers}</span>
+      <ul className={styles.stats}>
+        <li className={styles.statsElem}>
+          <span className={styles.label}>Followers </span>
+          <span className={styles.quantity}>{followers}</span>
         </li>
-        <li>
-          <span className="label">Views</span>
-          <span className="quantity">{views}</span>
+        <li className={styles.statsElem}>
+          <span className={styles.label}>Views </span>
+          <span className={styles.quantity}>{views}</span>
         </li>
-        <li>
-          <span className="label">Likes</span>
-          <span className="quantity">{likes}</span>
+        <li className={styles.statsElem}>
+          <span className={styles.label}>Likes </span>
+          <span className={styles.quantity}>{likes}</span>
         </li>
       </ul>
     </div>
   );
 };
+
+Profile.propTypes = {
+  user: PropTypes.exact({
+    name: PropTypes.string.isRequired,
+    avatar: PropTypes.string.isRequired,
+    tag: PropTypes.string.isRequired,
+    location: PropTypes.string.isRequired,
+    stats: PropTypes.exact({
+      followers: PropTypes.number,
+      views: PropTypes.number,
+      likes: PropTypes.number
+    }).isRequired
+  })
+};
+
 export default Profile;
