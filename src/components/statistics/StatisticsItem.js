@@ -1,12 +1,11 @@
 import React from "react";
 import styles from "./Statistics.module.css";
 
-const StatisticsItem = ({ statItem }) => {
-  const { label, percentage } = statItem;
+const StatisticsItem = ({ ...item }) => {
   return (
     <li className={styles.item}>
-      <span className={styles.label}>{label}</span>
-      <span className={styles.percentage}>{percentage}%</span>
+      <span className={styles.label}>{item.label}</span>
+      <span className={styles.percentage}>{item.percentage}%</span>
     </li>
   );
 };
